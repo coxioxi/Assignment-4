@@ -297,9 +297,8 @@ def process_file(filename):
                 if not line:
                     continue
                 try:
-                    Parser(line)  # quick syntax check via Parser parsing inside calc
+                    Parser(line)
                     result = calc(line)
-                    # result is computed; we don't print each result by spec, but could
                 except ParseError as err:
                     print(f"{filename}:{line_no}: parse error: {err.message}")
                 except Exception as ex:
