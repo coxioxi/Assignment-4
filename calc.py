@@ -9,10 +9,10 @@ class Lexer:
 
     rules = [
         (re.compile(r'==|!=|<=|>='), lambda s: s),
-        (re.compile(r'[0-9]+'), lambda s: int(s)),                          # integer literals
-        (re.compile(r'[a-zA-Z]+'), lambda s: s),                            # variables (letters only)
-        (re.compile(r'[+\-*/^()?:|&!@%=<>%]'), lambda s: s),                # single-char operators and punctuation
-        (re.compile(r'.'), lambda s: '#' + str(ord(s))),                    # any other single char -> error token
+        (re.compile(r'[0-9]+'), lambda s: int(s)),           # integer literals
+        (re.compile(r'[a-zA-Z]+'), lambda s: s),             # variables (letters only)
+        (re.compile(r'[+\-*/^()?:|&!@%=<>%]'), lambda s: s), # single-char operators and punctuation
+        (re.compile(r'.'), lambda s: '#' + str(ord(s))),     # any other single char -> error token
     ]
 
     def __init__(self, input_string):
@@ -241,7 +241,7 @@ def eval(e):
         if op == '@':
             return abs(eval(e[1]))
 
-        # Binary arithmetic and comparison ops
+        # Binary arithmetic and comparison operators
         left = None
         right = None
         if len(e) >= 2:
@@ -285,8 +285,7 @@ def calc(line):
     ast = Parser(line).parse()
     return eval(ast)
 
-
-# --- main: file-processing or REPL ---
+# --- process a file of expressions ---
 def process_file(filename):
     try:
         with open(filename, 'r') as f:
